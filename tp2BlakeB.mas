@@ -59,7 +59,7 @@ while2,	load	Count
 	jump	while3
 if,	load	IndexComparing
 	subt	IndexLooking
-	skipcond	800
+	skipcond	800	/if(Data[InLoop - ONE] > Data[InLoop]
 	jump	IncrementInLoop
 	jump	SwapSubProgram
 	store	InLoop
