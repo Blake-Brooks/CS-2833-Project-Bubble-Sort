@@ -1,0 +1,91 @@
+/
+/ Term Project Part 2 (BubbleSort), Computer Organization I
+/ Name:   
+/
+	ORG	0
+	JUMP	start
+BAddr,	hex	0003	/ DATA_B = 0003 (hex)
+EAddr,	hex	0019	/ DATA_E = 0019 (hex)
+
+	/ data section begins
+DATA_B,	hex	0512	/ data begin
+	hex	0091
+	hex	0906
+	hex	00CA
+	hex	001A
+	hex	00AF
+	hex	0C25
+	hex	0038
+	hex	0131
+	hex	00B9
+	hex	0039
+	hex	0050
+	hex	0005
+	hex	00BD
+	hex	065F
+	hex	0059
+	hex	0F08
+	hex	0BAB
+	hex	0040
+	hex	007A
+	hex	03D1
+	hex	0030
+DATA_E,	hex	00FE	/ data end
+
+Count,	dec	23	/ the number of data
+/
+/ do not modify codes above
+/ add code/data below
+/
+start, load ZERO    / Your first instruction begins here!!!
+	store	OutLoop	/int OutLoop = ZERO;
+	load	BAddr
+	Add	0001
+	store	IndexLooking
+	load	BAddr
+	store	IndexComparing
+while,	load	OutLoop
+	subt	Count	
+	skipcond	400	/if(OutLoop == Count)
+	jump	while2
+	jump	while3	/break
+while2,	load	Count
+	subt	OutLoop
+	store	Count
+	load	InLoop
+	subt	Count
+	skipcond	400
+	jump	if
+	jump	while3
+if,	load	IndexComparing
+	subt	IndexLooking
+	skipcond	800
+	jump	IncrementInLoop
+	jump	SwapSubProgram
+	store	InLoop
+IncrementInLoop,	load InLoop
+	Add	ONE
+	Store	InLoop
+	jump	while2
+while3,	load	ZERO
+	store	Index
+	subt	Count
+	skipcond	400
+	jump	endif
+SwapSubProgram,	load	temp
+	load	IndexComparing
+	store	temp	/int temp = a;	
+	load	IndexLooking
+	load	IndexLooking
+	store	IndexComparing	/a = b;
+	load	temp
+	store	IndexLooking	/b = temp;
+endif,	halt
+ONE,	Dec	1	/ int ONE = 1;
+ZERO,	DEC	0	/int ZERO = 0;
+OutLoop,	Dec	0
+temp,	Dec	0
+Index,	Dec	0
+InLoop,	Dec	0
+IndexLooking,	Dec	0
+IndexComparing,	Dec	0
