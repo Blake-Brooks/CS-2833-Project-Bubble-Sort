@@ -1,0 +1,28 @@
+ --------------------------------
+ Symbol                | Location
+ ----------------------+---------
+ BAddr                 |   001
+ Count                 |   01A
+ DATA_B                |   003
+ DATA_E                |   019
+ EAddr                 |   002
+ InLoop                |   05A
+ IncrementIndexLooking |   039
+ IncrementOutLoop      |   03D
+ Index                 |   059
+ IndexComparing        |   05C
+ IndexLooking          |   05B
+ IndexLookingValue     |   05D
+ ONE                   |   055
+ OutLoop               |   057
+ SwapSubProgram        |   04C
+ ZERO                  |   056
+ dopart                |   047
+ endif                 |   054
+ if                    |   02F
+ start                 |   01B
+ temp                  |   058
+ while                 |   022
+ while2                |   027
+ while3                |   041
+

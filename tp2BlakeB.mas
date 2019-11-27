@@ -40,9 +40,9 @@ Count,	dec	23	/ the number of data
 start, load ZERO    / Your first instruction begins here!!!
 	store	OutLoop	/int OutLoop = ZERO;
 	load	BAddr
-	Add	0001
+	Add	ONE
 	store	IndexLooking
-	load	BAddr
+	load	ZERO
 	store	IndexComparing
 while,	load	OutLoop
 	subt	Count	
@@ -57,29 +57,44 @@ while2,	load	Count
 	skipcond	400
 	jump	if
 	jump	while3
-if,	load	IndexComparing
-	subt	IndexLooking
+if,	load	IndexLooking
+	   subt	ONE
+	   store	IndexComparing
+	   loadi	IndexLooking
+	   store	IndexLookingValue
+	   loadi	 IndexComparing
+	subt	IndexLookingValue
 	skipcond	800	/if(Data[InLoop - ONE] > Data[InLoop]
-	jump	IncrementInLoop
+	jump	IncrementIndexLooking
 	jump	SwapSubProgram
-	store	InLoop
-IncrementInLoop,	load InLoop
+IncrementIndexLooking,	load	IndexLooking
 	Add	ONE
-	Store	InLoop
+	Store	IndexLooking
 	jump	while2
+IncrementOutLoop,	load	OutLoop
+			Add	ONE
+			Store	OutLoop
+			jump	while2
 while3,	load	ZERO
 	store	Index
 	subt	Count
 	skipcond	400
+	jump	dopart
 	jump	endif
-SwapSubProgram,	load	temp
-	load	IndexComparing
+dopart,	loadi	Index
+		output	Index
+		load	Index
+		Add	ONE
+		store	Index
+	
+SwapSubProgram,	loadi	IndexComparing
 	store	temp	/int temp = a;	
-	load	IndexLooking
-	load	IndexLooking
-	store	IndexComparing	/a = b;
+	loadi	IndexLooking
+	storei	IndexComparing	/a = b;
+	storei	IndexComparing
 	load	temp
-	store	IndexLooking	/b = temp;
+	storei	IndexLooking	/b = temp;
+	jump	while2
 endif,	halt
 ONE,	Dec	1	/ int ONE = 1;
 ZERO,	DEC	0	/int ZERO = 0;
@@ -89,3 +104,4 @@ Index,	Dec	0
 InLoop,	Dec	0
 IndexLooking,	Dec	0
 IndexComparing,	Dec	0
+IndexLookingValue,	Dec	0

@@ -1,0 +1,145 @@
+     Assembly listing for: tp2BlakeB.mas
+                Assembled: Tue Nov 26 13:56:40 CST 2019
+
+         |                                                        /
+         |                                                        / Term Project Part 2 (BubbleSort), Computer Organization I
+         |                                                        / Name:   
+         |                                                        /
+         |                        ORG 0                            
+000 901B |                        JUMP start                       
+001 0003 |  BAddr                 HEX 0003                        / DATA_B = 0003 (hex)
+002 0019 |  EAddr                 HEX 0019                        / DATA_E = 0019 (hex)
+         |                                                        
+         |                                                        	/ data section begins
+003 0512 |  DATA_B                HEX 0512                        / data begin
+004 0091 |                        HEX 0091                         
+005 0906 |                        HEX 0906                         
+006 00CA |                        HEX 00CA                         
+007 001A |                        HEX 001A                         
+008 00AF |                        HEX 00AF                         
+009 0C25 |                        HEX 0C25                         
+00A 0038 |                        HEX 0038                         
+00B 0131 |                        HEX 0131                         
+00C 00B9 |                        HEX 00B9                         
+00D 0039 |                        HEX 0039                         
+00E 0050 |                        HEX 0050                         
+00F 0005 |                        HEX 0005                         
+010 00BD |                        HEX 00BD                         
+011 065F |                        HEX 065F                         
+012 0059 |                        HEX 0059                         
+013 0F08 |                        HEX 0F08                         
+014 0BAB |                        HEX 0BAB                         
+015 0040 |                        HEX 0040                         
+016 007A |                        HEX 007A                         
+017 03D1 |                        HEX 03D1                         
+018 0030 |                        HEX 0030                         
+019 00FE |  DATA_E                HEX 00FE                        / data end
+         |                                                        
+01A 0017 |  Count                 DEC 23                          / the number of data
+         |                                                        /
+         |                                                        / do not modify codes above
+         |                                                        / add code/data below
+         |                                                        /
+01B 1056 |  start                 LOAD ZERO                       / Your first instruction begins here!!!
+01C 2057 |                        STORE OutLoop                   /int OutLoop = ZERO;
+01D 1001 |                        LOAD BAddr                       
+01E 3055 |                        ADD ONE                          
+01F 205B |                        STORE IndexLooking               
+020 1056 |                        LOAD ZERO                        
+021 205C |                        STORE IndexComparing             
+022 1057 |  while                 LOAD OutLoop                     
+023 401A |                        SUBT Count                       
+024 8400 |                        SKIPCOND 400                    /if(OutLoop == Count)
+025 9027 |                        JUMP while2                      
+026 9041 |                        JUMP while3                     /break
+027 101A |  while2                LOAD Count                       
+028 4057 |                        SUBT OutLoop                     
+029 201A |                        STORE Count                      
+02A 105A |                        LOAD InLoop                      
+02B 401A |                        SUBT Count                       
+02C 8400 |                        SKIPCOND 400                     
+02D 902F |                        JUMP if                          
+02E 9041 |                        JUMP while3                      
+02F 105B |  if                    LOAD IndexLooking                
+030 4055 |                        SUBT ONE                         
+031 205C |                        STORE IndexComparing             
+032 D05B |                        LOADI IndexLooking               
+033 205D |                        STORE IndexLookingValue          
+034 D05C |                        LOADI IndexComparing             
+035 405D |                        SUBT IndexLookingValue           
+036 8800 |                        SKIPCOND 800                    /if(Data[InLoop - ONE] > Data[InLoop]
+037 9039 |                        JUMP IncrementIndexLooking       
+038 904C |                        JUMP SwapSubProgram              
+039 105B |  IncrementIndexLooking LOAD IndexLooking                
+03A 3055 |                        ADD ONE                          
+03B 205B |                        STORE IndexLooking               
+03C 9027 |                        JUMP while2                      
+03D 1057 |  IncrementOutLoop      LOAD OutLoop                     
+03E 3055 |                        ADD ONE                          
+03F 2057 |                        STORE OutLoop                    
+040 9027 |                        JUMP while2                      
+041 1056 |  while3                LOAD ZERO                        
+042 2059 |                        STORE Index                      
+043 401A |                        SUBT Count                       
+044 8400 |                        SKIPCOND 400                     
+045 9047 |                        JUMP dopart                      
+046 9054 |                        JUMP endif                       
+047 D059 |  dopart                LOADI Index                      
+048 6000 |                        OUTPUT                           
+049 1059 |                        LOAD Index                       
+04A 3055 |                        ADD ONE                          
+04B 2059 |                        STORE Index                      
+         |                                                        	
+04C D05C |  SwapSubProgram        LOADI IndexComparing             
+04D 2058 |                        STORE temp                      /int temp = a;	
+04E D05B |                        LOADI IndexLooking               
+04F E05C |                        STOREI IndexComparing           /a = b;
+050 E05C |                        STOREI IndexComparing            
+051 1058 |                        LOAD temp                        
+052 E05B |                        STOREI IndexLooking             /b = temp;
+053 9027 |                        JUMP while2                      
+054 7000 |  endif                 HALT                             
+055 0001 |  ONE                   DEC 1                           / int ONE = 1;
+056 0000 |  ZERO                  DEC 0                           /int ZERO = 0;
+057 0000 |  OutLoop               DEC 0                            
+058 0000 |  temp                  DEC 0                            
+059 0000 |  Index                 DEC 0                            
+05A 0000 |  InLoop                DEC 0                            
+05B 0000 |  IndexLooking          DEC 0                            
+05C 0000 |  IndexComparing        DEC 0                            
+05D 0000 |  IndexLookingValue     DEC 0                            
+
+Assembly successful.
+
+         SYMBOL TABLE
+         -----------------------------------------------------------------
+          Symbol                | Defined | References 
+         -----------------------+---------+-------------------------------
+          BAddr                 |   001   | 01D
+          Count                 |   01A   | 023, 027, 029, 02B, 043
+          DATA_B                |   003   | 
+          DATA_E                |   019   | 
+          EAddr                 |   002   | 
+          InLoop                |   05A   | 02A
+          IncrementIndexLooking |   039   | 037
+          IncrementOutLoop      |   03D   | 
+          Index                 |   059   | 042, 047, 049, 04B
+          IndexComparing        |   05C   | 021, 031, 034, 04C, 04F, 050
+          IndexLooking          |   05B   | 01F, 02F, 032, 039, 03B, 04E, 
+                                |         | 052
+          IndexLookingValue     |   05D   | 033, 035
+          ONE                   |   055   | 01E, 030, 03A, 03E, 04A
+          OutLoop               |   057   | 01C, 022, 028, 03D, 03F
+          SwapSubProgram        |   04C   | 038
+          ZERO                  |   056   | 01B, 020, 041
+          dopart                |   047   | 045
+          endif                 |   054   | 046
+          if                    |   02F   | 02D
+          start                 |   01B   | 000
+          temp                  |   058   | 04D, 051
+          while                 |   022   | 
+          while2                |   027   | 025, 03C, 040, 053
+          while3                |   041   | 026, 02E
+         -----------------------------------------------------------------
+
+
