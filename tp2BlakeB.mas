@@ -104,8 +104,8 @@ SwapSubProgram,	loadi	IndexComparing
 ifcomparing,	load	IndexComparing
 		    subt	EAddr	/Check to make sure that we aren't outside the database range
 		    skipcond	000	/If the value of the accumulator is less than 0 then skip while3 label
-			jump	IncrementOutLoop
 			jump	while2
+			jump	IncrementOutLoop
 endif,	halt
 ONE,	Dec	1	/ int ONE = 1;
 ZERO,	DEC	0	/int ZERO = 0;

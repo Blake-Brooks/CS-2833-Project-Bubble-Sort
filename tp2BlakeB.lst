@@ -1,5 +1,5 @@
      Assembly listing for: tp2BlakeB.mas
-                Assembled: Sat Nov 30 02:23:04 CST 2019
+                Assembled: Sun Dec 01 01:00:18 CST 2019
 
          |                                                        /
          |                                                        / Term Project Part 2 (BubbleSort), Computer Organization I
@@ -107,8 +107,8 @@
 05B 1068 |  ifcomparing           LOAD IndexComparing              
 05C 4002 |                        SUBT EAddr                      /Check to make sure that we aren't outside the database range
 05D 8000 |                        SKIPCOND 000                    /If the value of the accumulator is less than 0 then skip while3 label
-05E 9042 |                        JUMP IncrementOutLoop            
-05F 9029 |                        JUMP while2                      
+05E 9029 |                        JUMP while2                      
+05F 9042 |                        JUMP IncrementOutLoop            
 060 7000 |  endif                 HALT                             
 061 0001 |  ONE                   DEC 1                           / int ONE = 1;
 062 0000 |  ZERO                  DEC 0                           /int ZERO = 0;
@@ -135,7 +135,7 @@ Assembly successful.
           InLoop                |   066   | 023, 02C, 03E, 040
           IncrementInLoop       |   03E   | 
           IncrementIndexLooking |   03B   | 039
-          IncrementOutLoop      |   042   | 05E
+          IncrementOutLoop      |   042   | 05F
           Index                 |   065   | 047, 04C, 04E, 050
           IndexComparing        |   068   | 021, 033, 036, 055, 058, 05B
           IndexIncrement        |   06A   | 046, 051, 053
@@ -154,7 +154,7 @@ Assembly successful.
           start                 |   01B   | 000
           temp                  |   064   | 056, 059
           while                 |   022   | 045
-          while2                |   029   | 027, 041, 05F
+          while2                |   029   | 027, 041, 05E
           while3                |   046   | 028, 030, 054
          -----------------------------------------------------------------
 
