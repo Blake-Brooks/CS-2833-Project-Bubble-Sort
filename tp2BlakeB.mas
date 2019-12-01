@@ -1,6 +1,6 @@
 /
 / Term Project Part 2 (BubbleSort), Computer Organization I
-/ Name:   
+/ Name: Blake Brooks  
 /
 	ORG	0
 	JUMP	start
@@ -40,11 +40,13 @@ Count,	dec	23	/ the number of data
 start, load ZERO    / Your first instruction begins here!!!
 	store	OutLoop	/int OutLoop = ZERO;
 	load	BAddr
-	Add	ONE
-	store	IndexLooking
-	load	ZERO
-	store	IndexComparing
-while,	load	OutLoop	/loading OutLoop for starting while loop
+	Add	ONE	/Add one to Beginning Address 
+	store	IndexLooking /Store into accumulator
+	load	ZERO	/Load value of 0
+	store	IndexComparing	/Store into the value of IndexComparing
+while,  load	ONE
+	store	InLoop	
+	load	OutLoop	/loading OutLoop for starting while loop
 	subt	Count		/subtracting Count to compare the value in the accumulator to 0
 	skipcond	400	/if(OutLoop == Count)
 	jump	while2		/ If what is in the accumulator is equal to 0, skip jump to 2nd while loop and jump to the 3rd
@@ -70,30 +72,29 @@ if,	load	IndexLooking	/loading value to start at 2nd database vale, database[1] 
 IncrementIndexLooking,	load	IndexLooking
 	Add	ONE
 	Store	IndexLooking
-	jump	while2
 IncrementInLoop,	load	InLoop
 			Add	ONE
-			store	InLoop
-			jump	while2
-IncrementOutLoop,	load	OutLoop
+			store	InLoop	/InLoop = InLoop + ONE;
+			jump	while2	/jump to the 2nd while loop label
+IncrementOutLoop,	load	OutLoop	
 			Add	ONE
-			Store	OutLoop
-			jump	while
-while3,	load	IndexIncrement
-	store	Index
-	subt	EAddr
-	skipcond	400
+			Store	OutLoop	/OutLoop = OutLoop + ONE;
+			jump	while	   /jump to the first while loop
+while3,	load	IndexIncrement	   / load the value of the IndexIncrement variable
+	store	Index	/store it into Index
+	subt	EAddr	/subtract index from ending address to make sure the index is in range of database values
+	skipcond	400	/ if values are equal then skip the dopart label and halt the program
 	jump	dopart
 	jump	endif
-dopart,	loadi	Index
-		output	Index
-		load	Index
-		Add	ONE
-		store	Index
-		load	IndexIncrement
+dopart,	loadi	Index	/load the value stored at the address of Index
+		output	Index	/output the value
+		load	Index	/load value of Index
+		Add	ONE	     /Add one to look at next part of database
+		store	Index	/store in Index 
+		load	IndexIncrement	
 		Add	 ONE
 		store	IndexIncrement
-		jump	while3
+		jump	while3	/jump to the 3rd while loop label
 SwapSubProgram,	loadi	IndexComparing
 	store	temp	/int temp = a;	
 	loadi	IndexLooking
@@ -101,16 +102,16 @@ SwapSubProgram,	loadi	IndexComparing
 	load	temp
 	storei	IndexLooking	/b = temp;
 ifcomparing,	load	IndexComparing
-		    subt	EAddr
-		    skipcond	400
-			jump	while3
+		    subt	EAddr	/Check to make sure that we aren't outside the database range
+		    skipcond	000	/If the value of the accumulator is less than 0 then skip while3 label
+			jump	IncrementOutLoop
 			jump	while2
 endif,	halt
 ONE,	Dec	1	/ int ONE = 1;
 ZERO,	DEC	0	/int ZERO = 0;
-OutLoop,	Dec	0
+OutLoop,	Dec	0	/ int OutLoop = ZERO;
 temp,	Dec	0
-Index,	Dec	0
+Index,	Dec	0	/int Index = ZERO;
 InLoop,	Dec	0
 IndexLooking,	Dec	0
 IndexComparing,	Dec	0

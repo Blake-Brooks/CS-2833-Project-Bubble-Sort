@@ -6,26 +6,26 @@
  DATA_B                |   003
  DATA_E                |   019
  EAddr                 |   002
- InLoop                |   065
- IncrementInLoop       |   03D
- IncrementIndexLooking |   039
- IncrementOutLoop      |   041
- Index                 |   064
- IndexComparing        |   067
- IndexIncrement        |   069
- IndexLooking          |   066
- IndexLookingValue     |   068
- ONE                   |   060
- OutLoop               |   062
- SwapSubProgram        |   054
- ZERO                  |   061
- dopart                |   04B
- endif                 |   05F
- if                    |   02F
- ifcomparing           |   05A
+ InLoop                |   066
+ IncrementInLoop       |   03E
+ IncrementIndexLooking |   03B
+ IncrementOutLoop      |   042
+ Index                 |   065
+ IndexComparing        |   068
+ IndexIncrement        |   06A
+ IndexLooking          |   067
+ IndexLookingValue     |   069
+ ONE                   |   061
+ OutLoop               |   063
+ SwapSubProgram        |   055
+ ZERO                  |   062
+ dopart                |   04C
+ endif                 |   060
+ if                    |   031
+ ifcomparing           |   05B
  start                 |   01B
- temp                  |   063
+ temp                  |   064
  while                 |   022
- while2                |   027
- while3                |   045
+ while2                |   029
+ while3                |   046
 
