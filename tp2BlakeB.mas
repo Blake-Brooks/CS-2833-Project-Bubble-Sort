@@ -53,9 +53,9 @@ while,  load	ONE
 	jump	while3	/break
 while2,	load	Count	/load count to start to subtract from OutLoop and compare to InLoop
 	subt	OutLoop
-	store	Count
+	store	tempCount
 	load	InLoop
-	subt	Count	
+	subt	tempCount	
 	skipcond	400	/if(InLoop == Count - Outloop)
 	jump	if	/if accumulator value is equal to zero, skip this line, otherwise jump to the if label
 	jump	while3	/break
@@ -117,3 +117,4 @@ IndexLooking,	Dec	0
 IndexComparing,	Dec	0
 IndexLookingValue,	Dec	0
 IndexIncrement,	hex	0003
+tempCount,	Dec	0

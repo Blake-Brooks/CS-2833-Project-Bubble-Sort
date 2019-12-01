@@ -1,5 +1,5 @@
      Assembly listing for: tp2BlakeB.mas
-                Assembled: Sun Dec 01 01:00:18 CST 2019
+                Assembled: Sun Dec 01 01:44:44 CST 2019
 
          |                                                        /
          |                                                        / Term Project Part 2 (BubbleSort), Computer Organization I
@@ -56,9 +56,9 @@
 028 9046 |                        JUMP while3                     /break
 029 101A |  while2                LOAD Count                      /load count to start to subtract from OutLoop and compare to InLoop
 02A 4063 |                        SUBT OutLoop                     
-02B 201A |                        STORE Count                      
+02B 206B |                        STORE tempCount                  
 02C 1066 |                        LOAD InLoop                      
-02D 401A |                        SUBT Count                       
+02D 406B |                        SUBT tempCount                   
 02E 8400 |                        SKIPCOND 400                    /if(InLoop == Count - Outloop)
 02F 9031 |                        JUMP if                         /if accumulator value is equal to zero, skip this line, otherwise jump to the if label
 030 9046 |                        JUMP while3                     /break
@@ -120,6 +120,7 @@
 068 0000 |  IndexComparing        DEC 0                            
 069 0000 |  IndexLookingValue     DEC 0                            
 06A 0003 |  IndexIncrement        HEX 0003                         
+06B 0000 |  tempCount             DEC 0                            
 
 Assembly successful.
 
@@ -128,7 +129,7 @@ Assembly successful.
           Symbol                | Defined | References 
          -----------------------+---------+-------------------------------
           BAddr                 |   001   | 01D
-          Count                 |   01A   | 025, 029, 02B, 02D
+          Count                 |   01A   | 025, 029
           DATA_B                |   003   | 
           DATA_E                |   019   | 
           EAddr                 |   002   | 048, 05C
@@ -153,6 +154,7 @@ Assembly successful.
           ifcomparing           |   05B   | 
           start                 |   01B   | 000
           temp                  |   064   | 056, 059
+          tempCount             |   06B   | 02B, 02D
           while                 |   022   | 045
           while2                |   029   | 027, 041, 05E
           while3                |   046   | 028, 030, 054

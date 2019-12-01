@@ -25,6 +25,7 @@
  ifcomparing           |   05B
  start                 |   01B
  temp                  |   064
+ tempCount             |   06B
  while                 |   022
  while2                |   029
  while3                |   046
