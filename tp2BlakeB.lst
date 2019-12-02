@@ -1,5 +1,5 @@
      Assembly listing for: tp2BlakeB.mas
-                Assembled: Sun Dec 01 01:44:44 CST 2019
+                Assembled: Sun Dec 01 17:34:50 CST 2019
 
          |                                                        /
          |                                                        / Term Project Part 2 (BubbleSort), Computer Organization I
@@ -40,87 +40,92 @@
          |                                                        / do not modify codes above
          |                                                        / add code/data below
          |                                                        /
-01B 1062 |  start                 LOAD ZERO                       / Your first instruction begins here!!!
-01C 2063 |                        STORE OutLoop                   /int OutLoop = ZERO;
+01B 1067 |  start                 LOAD ZERO                       / Your first instruction begins here!!!
+01C 2068 |                        STORE OutLoop                   /int OutLoop = ZERO;
 01D 1001 |                        LOAD BAddr                       
-01E 3061 |                        ADD ONE                         /Add one to Beginning Address 
-01F 2067 |                        STORE IndexLooking              /Store into accumulator
-020 1062 |                        LOAD ZERO                       /Load value of 0
-021 2068 |                        STORE IndexComparing            /Store into the value of IndexComparing
-022 1061 |  while                 LOAD ONE                         
-023 2066 |                        STORE InLoop                     
-024 1063 |                        LOAD OutLoop                    /loading OutLoop for starting while loop
-025 401A |                        SUBT Count                      /subtracting Count to compare the value in the accumulator to 0
-026 8400 |                        SKIPCOND 400                    /if(OutLoop == Count)
-027 9029 |                        JUMP while2                     / If what is in the accumulator is equal to 0, skip jump to 2nd while loop and jump to the 3rd
-028 9046 |                        JUMP while3                     /break
-029 101A |  while2                LOAD Count                      /load count to start to subtract from OutLoop and compare to InLoop
-02A 4063 |                        SUBT OutLoop                     
-02B 206B |                        STORE tempCount                  
-02C 1066 |                        LOAD InLoop                      
-02D 406B |                        SUBT tempCount                   
-02E 8400 |                        SKIPCOND 400                    /if(InLoop == Count - Outloop)
-02F 9031 |                        JUMP if                         /if accumulator value is equal to zero, skip this line, otherwise jump to the if label
-030 9046 |                        JUMP while3                     /break
-031 1067 |  if                    LOAD IndexLooking               /loading value to start at 2nd database vale, database[1] in terms of C++
-032 4061 |                        SUBT ONE                        / subtracting 1 to look to the left of where we are currently looking and storing into IndexComparing
-033 2068 |                        STORE IndexComparing             
-034 D067 |                        LOADI IndexLooking              /load value of what is at the address of IndexLooking
-035 2069 |                        STORE IndexLookingValue         /stroe the address value into variable
-036 D068 |                        LOADI IndexComparing             
-037 4069 |                        SUBT IndexLookingValue           
-038 8800 |                        SKIPCOND 800                    /if(Data[InLoop - ONE] > Data[InLoop]
-039 903B |                        JUMP IncrementIndexLooking       
-03A 9055 |                        JUMP SwapSubProgram              
-03B 1067 |  IncrementIndexLooking LOAD IndexLooking                
-03C 3061 |                        ADD ONE                          
-03D 2067 |                        STORE IndexLooking               
-03E 1066 |  IncrementInLoop       LOAD InLoop                      
-03F 3061 |                        ADD ONE                          
-040 2066 |                        STORE InLoop                    /InLoop = InLoop + ONE;
-041 9029 |                        JUMP while2                     /jump to the 2nd while loop label
-042 1063 |  IncrementOutLoop      LOAD OutLoop                     
-043 3061 |                        ADD ONE                          
-044 2063 |                        STORE OutLoop                   /OutLoop = OutLoop + ONE;
-045 9022 |                        JUMP while                      /jump to the first while loop
-046 106A |  while3                LOAD IndexIncrement             / load the value of the IndexIncrement variable
-047 2065 |                        STORE Index                     /store it into Index
-048 4002 |                        SUBT EAddr                      /subtract index from ending address to make sure the index is in range of database values
-049 8400 |                        SKIPCOND 400                    / if values are equal then skip the dopart label and halt the program
-04A 904C |                        JUMP dopart                      
-04B 9060 |                        JUMP endif                       
-04C D065 |  dopart                LOADI Index                     /load the value stored at the address of Index
-04D 6000 |                        OUTPUT                          /output the value
-04E 1065 |                        LOAD Index                      /load value of Index
-04F 3061 |                        ADD ONE                         /Add one to look at next part of database
-050 2065 |                        STORE Index                     /store in Index 
-051 106A |                        LOAD IndexIncrement              
-052 3061 |                        ADD ONE                          
-053 206A |                        STORE IndexIncrement             
-054 9046 |                        JUMP while3                     /jump to the 3rd while loop label
-055 D068 |  SwapSubProgram        LOADI IndexComparing             
-056 2064 |                        STORE temp                      /int temp = a;	
-057 D067 |                        LOADI IndexLooking               
-058 E068 |                        STOREI IndexComparing           /a = b;
-059 1064 |                        LOAD temp                        
-05A E067 |                        STOREI IndexLooking             /b = temp;
-05B 1068 |  ifcomparing           LOAD IndexComparing              
-05C 4002 |                        SUBT EAddr                      /Check to make sure that we aren't outside the database range
-05D 8000 |                        SKIPCOND 000                    /If the value of the accumulator is less than 0 then skip while3 label
-05E 9029 |                        JUMP while2                      
-05F 9042 |                        JUMP IncrementOutLoop            
-060 7000 |  endif                 HALT                             
-061 0001 |  ONE                   DEC 1                           / int ONE = 1;
-062 0000 |  ZERO                  DEC 0                           /int ZERO = 0;
-063 0000 |  OutLoop               DEC 0                           / int OutLoop = ZERO;
-064 0000 |  temp                  DEC 0                            
-065 0000 |  Index                 DEC 0                           /int Index = ZERO;
-066 0000 |  InLoop                DEC 0                            
-067 0000 |  IndexLooking          DEC 0                            
-068 0000 |  IndexComparing        DEC 0                            
-069 0000 |  IndexLookingValue     DEC 0                            
-06A 0003 |  IndexIncrement        HEX 0003                         
-06B 0000 |  tempCount             DEC 0                            
+01E 3066 |                        ADD ONE                         /Add one to Beginning Address 
+01F 206C |                        STORE IndexLooking              /Store into accumulator
+020 1067 |                        LOAD ZERO                       /Load value of 0
+021 206D |                        STORE IndexComparing            /Store into the value of IndexComparing
+022 1067 |  while                 LOAD ZERO                        
+023 206B |                        STORE InLoop                     
+024 1001 |                        LOAD BAddr                      /loading OutLoop for starting while loop
+025 3066 |                        ADD ONE                          
+026 206C |                        STORE IndexLooking               
+027 6000 |                        OUTPUT                           
+028 1068 |                        LOAD OutLoop                     
+029 401A |                        SUBT Count                      /subtracting Count to compare the value in the accumulator to 0
+02A 8400 |                        SKIPCOND 400                    /if(OutLoop == Count)
+02B 902D |                        JUMP while2                     / If what is in the accumulator is equal to 0, skip jump to 2nd while loop and jump to the 3rd
+02C 904B |                        JUMP while3                     /break
+02D 101A |  while2                LOAD Count                      /load count to start to subtract from OutLoop and compare to InLoop
+02E 4068 |                        SUBT OutLoop                     
+02F 2070 |                        STORE tempCount                  
+030 106B |                        LOAD InLoop                      
+031 4070 |                        SUBT tempCount                   
+032 8400 |                        SKIPCOND 400                    /if(InLoop == Count - Outloop)
+033 9035 |                        JUMP if                         /if accumulator value is equal to zero, skip this line, otherwise jump to the if label
+034 9047 |                        JUMP IncrementOutLoop           /break
+035 106C |  if                    LOAD IndexLooking               /loading value to start at 2nd database vale, database[1] in terms of C++
+036 4066 |                        SUBT ONE                        / subtracting 1 to look to the left of where we are currently looking and storing into IndexComparing
+037 206D |                        STORE IndexComparing             
+038 D06C |                        LOADI IndexLooking              /load value of what is at the address of IndexLooking
+039 206E |                        STORE IndexLookingValue         /stroe the address value into variable
+03A D06D |                        LOADI IndexComparing             
+03B 406E |                        SUBT IndexLookingValue           
+03C 8800 |                        SKIPCOND 800                    /if(Data[InLoop - ONE] > Data[InLoop]
+03D 903F |                        JUMP IncrementIndexLooking       
+03E 905A |                        JUMP SwapSubProgram              
+03F 106C |  IncrementIndexLooking LOAD IndexLooking                
+040 3066 |                        ADD ONE                          
+041 206C |                        STORE IndexLooking               
+042 106B |  IncrementInLoop       LOAD InLoop                      
+043 3066 |                        ADD ONE                          
+044 206B |                        STORE InLoop                    /InLoop = InLoop + ONE;
+045 6000 |                        OUTPUT                           
+046 902D |                        JUMP while2                     /jump to the 2nd while loop label
+047 1068 |  IncrementOutLoop      LOAD OutLoop                     
+048 3066 |                        ADD ONE                          
+049 2068 |                        STORE OutLoop                   /OutLoop = OutLoop + ONE;
+04A 9022 |                        JUMP while                      /jump to the first while loop
+04B 106F |  while3                LOAD IndexIncrement             / load the value of the IndexIncrement variable
+04C 206A |                        STORE Index                     /store it into Index
+04D 4002 |                        SUBT EAddr                      /subtract index from ending address to make sure the index is in range of database values
+04E 8400 |                        SKIPCOND 400                    / if values are equal then skip the dopart label and halt the program
+04F 9051 |                        JUMP dopart                      
+050 9065 |                        JUMP endif                       
+051 D06A |  dopart                LOADI Index                     /load the value stored at the address of Index
+052 6000 |                        OUTPUT                          /output the value
+053 106A |                        LOAD Index                      /load value of Index
+054 3066 |                        ADD ONE                         /Add one to look at next part of database
+055 206A |                        STORE Index                     /store in Index 
+056 106F |                        LOAD IndexIncrement              
+057 3066 |                        ADD ONE                          
+058 206F |                        STORE IndexIncrement             
+059 904B |                        JUMP while3                     /jump to the 3rd while loop label
+05A D06D |  SwapSubProgram        LOADI IndexComparing             
+05B 2069 |                        STORE temp                      /int temp = a;	
+05C D06C |                        LOADI IndexLooking               
+05D E06D |                        STOREI IndexComparing           /a = b;
+05E 1069 |                        LOAD temp                        
+05F E06C |                        STOREI IndexLooking             /b = temp;
+060 106D |  ifcomparing           LOAD IndexComparing              
+061 4002 |                        SUBT EAddr                      /Check to make sure that we aren't outside the database range
+062 8400 |                        SKIPCOND 400                    /If the value of the accumulator is less than 0 then skip while3 label
+063 902D |                        JUMP while2                      
+064 9047 |                        JUMP IncrementOutLoop            
+065 7000 |  endif                 HALT                             
+066 0001 |  ONE                   DEC 1                           / int ONE = 1;
+067 0000 |  ZERO                  DEC 0                           /int ZERO = 0;
+068 0000 |  OutLoop               DEC 0                           / int OutLoop = ZERO;
+069 0000 |  temp                  DEC 0                            
+06A 0000 |  Index                 DEC 0                           /int Index = ZERO;
+06B 0000 |  InLoop                DEC 0                            
+06C 0000 |  IndexLooking          DEC 0                            
+06D 0000 |  IndexComparing        DEC 0                            
+06E 0000 |  IndexLookingValue     DEC 0                            
+06F 0003 |  IndexIncrement        HEX 0003                         
+070 0000 |  tempCount             DEC 0                            
 
 Assembly successful.
 
@@ -128,36 +133,36 @@ Assembly successful.
          -----------------------------------------------------------------
           Symbol                | Defined | References 
          -----------------------+---------+-------------------------------
-          BAddr                 |   001   | 01D
-          Count                 |   01A   | 025, 029
+          BAddr                 |   001   | 01D, 024
+          Count                 |   01A   | 029, 02D
           DATA_B                |   003   | 
           DATA_E                |   019   | 
-          EAddr                 |   002   | 048, 05C
-          InLoop                |   066   | 023, 02C, 03E, 040
-          IncrementInLoop       |   03E   | 
-          IncrementIndexLooking |   03B   | 039
-          IncrementOutLoop      |   042   | 05F
-          Index                 |   065   | 047, 04C, 04E, 050
-          IndexComparing        |   068   | 021, 033, 036, 055, 058, 05B
-          IndexIncrement        |   06A   | 046, 051, 053
-          IndexLooking          |   067   | 01F, 031, 034, 03B, 03D, 057, 
-                                |         | 05A
-          IndexLookingValue     |   069   | 035, 037
-          ONE                   |   061   | 01E, 022, 032, 03C, 03F, 043, 
-                                |         | 04F, 052
-          OutLoop               |   063   | 01C, 024, 02A, 042, 044
-          SwapSubProgram        |   055   | 03A
-          ZERO                  |   062   | 01B, 020
-          dopart                |   04C   | 04A
-          endif                 |   060   | 04B
-          if                    |   031   | 02F
-          ifcomparing           |   05B   | 
+          EAddr                 |   002   | 04D, 061
+          InLoop                |   06B   | 023, 030, 042, 044
+          IncrementInLoop       |   042   | 
+          IncrementIndexLooking |   03F   | 03D
+          IncrementOutLoop      |   047   | 034, 064
+          Index                 |   06A   | 04C, 051, 053, 055
+          IndexComparing        |   06D   | 021, 037, 03A, 05A, 05D, 060
+          IndexIncrement        |   06F   | 04B, 056, 058
+          IndexLooking          |   06C   | 01F, 026, 035, 038, 03F, 041, 
+                                |         | 05C, 05F
+          IndexLookingValue     |   06E   | 039, 03B
+          ONE                   |   066   | 01E, 025, 036, 040, 043, 048, 
+                                |         | 054, 057
+          OutLoop               |   068   | 01C, 028, 02E, 047, 049
+          SwapSubProgram        |   05A   | 03E
+          ZERO                  |   067   | 01B, 020, 022
+          dopart                |   051   | 04F
+          endif                 |   065   | 050
+          if                    |   035   | 033
+          ifcomparing           |   060   | 
           start                 |   01B   | 000
-          temp                  |   064   | 056, 059
-          tempCount             |   06B   | 02B, 02D
-          while                 |   022   | 045
-          while2                |   029   | 027, 041, 05E
-          while3                |   046   | 028, 030, 054
+          temp                  |   069   | 05B, 05E
+          tempCount             |   070   | 02F, 031
+          while                 |   022   | 04A
+          while2                |   02D   | 02B, 046, 063
+          while3                |   04B   | 02C, 059
          -----------------------------------------------------------------
 
 
