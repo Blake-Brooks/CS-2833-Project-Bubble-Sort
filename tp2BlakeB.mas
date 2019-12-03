@@ -39,79 +39,85 @@ Count,	dec	23	/ the number of data
 /
 start, load ZERO    / Your first instruction begins here!!!
 	store	OutLoop	/int OutLoop = ZERO;
-	load	BAddr
+	load	BAddr	/load the beginning address
 	Add	ONE	/Add one to Beginning Address 
 	store	IndexLooking /Store into accumulator
 	load	ZERO	/Load value of 0
 	store	IndexComparing	/Store into the value of IndexComparing
-while,  load	ZERO
-	store	InLoop	
+while,  load	ZERO		/load value of 0 for InLoop
+	store	InLoop	    /store 0 in InLoop
 	load	BAddr	/loading OutLoop for starting while loop
-	Add	ONE
-	store	IndexLooking
-	output
-	load	OutLoop
+	Add	ONE	/Add one to beginning address to look at address 0004
+	store	IndexLooking	/store into IndexLooking
+	load	OutLoop	/load value of OutLoop
 	subt	Count		/subtracting Count to compare the value in the accumulator to 0
 	skipcond	400	/if(OutLoop == Count)
 	jump	while2		/ If what is in the accumulator is equal to 0, skip jump to 2nd while loop and jump to the 3rd
 	jump	while3	/break
 while2,	load	Count	/load count to start to subtract from OutLoop and compare to InLoop
-	subt	OutLoop
-	store	tempCount
-	load	InLoop
-	subt	tempCount	
+	subt	OutLoop	/subtract value of OutLoop from Count
+	store	tempCount    /store value into tempCount
+	load	InLoop	/load value of InLoop
+	subt	tempCount	/subtract tempCount
 	skipcond	400	/if(InLoop == Count - Outloop)
 	jump	if	/if accumulator value is equal to zero, skip this line, otherwise jump to the if label
-	jump	IncrementOutLoop	/break *****
+	jump	IncrementOutLoop	/break 
 if,	load	IndexLooking	/loading value to start at 2nd database vale, database[1] in terms of C++
 	   subt	ONE		/ subtracting 1 to look to the left of where we are currently looking and storing into IndexComparing
-	   store	IndexComparing
+	   store	IndexComparing    /store into IndexComparing
 	   loadi	IndexLooking	/load value of what is at the address of IndexLooking
 	   store	IndexLookingValue   /stroe the address value into variable
-	   loadi	 IndexComparing
-	subt	IndexLookingValue
+	   loadi	 IndexComparing    /Load the value
+	subt	IndexLookingValue     /subtract the value of IndexLookingValue
 	skipcond	800	/if(Data[InLoop - ONE] > Data[InLoop]
-	jump	IncrementIndexLooking
-	jump	SwapSubProgram
-IncrementIndexLooking,	load	IndexLooking
-	Add	ONE
-	Store	IndexLooking
-IncrementInLoop,	load	InLoop
-			Add	ONE
+	jump	IncrementIndexLooking	/jump to IncrementIndexLooking
+	jump	SwapSubProgram		/jump to subprogram
+IncrementIndexLooking,	load	IndexLooking 	/load variable IndexLooking
+	Add	ONE	/Add one to the value
+	Store	IndexLooking	/store into IndexLooking
+IncrementInLoop,	load	InLoop	/load variable InLoop
+			Add	ONE	/Add one to the variable
 			store	InLoop	/InLoop = InLoop + ONE;
-			output
+			subt	tempCount	/subtract the variable of tempCount
+			skipcond	400	/check to see if the accumulator value is 0
 			jump	while2	/jump to the 2nd while loop label
-IncrementOutLoop,	load	OutLoop	
-			Add	ONE
+			jump	IncrementOutLoop	/jump to IncrementOutLoop
+IncrementOutLoop,	load	OutLoop	/Load OutLoop
+			Add	ONE	/Add one to the variable
 			Store	OutLoop	/OutLoop = OutLoop + ONE;
 			jump	while	   /jump to the first while loop
-while3,	load	IndexIncrement	   / load the value of the IndexIncrement variable
-	store	Index	/store it into Index
-	subt	EAddr	/subtract index from ending address to make sure the index is in range of database values
+while3,	load	EAddr	   / load the value of ending address
+	       Add	ONE	/Add one to Ending address
+	store	tempEnd	/store it into tempend
+	load	IndexIncrement	/load IndexIncrement variable
+	store	Index	/store into Index
+	subt	tempEnd	/subtract value of tempEnd
 	skipcond	400	/ if values are equal then skip the dopart label and halt the program
-	jump	dopart
-	jump	endif
+	jump	dopart	jump to dopart
+	jump	endif	/jump to endif to halt the program
 dopart,	loadi	Index	/load the value stored at the address of Index
 		output	Index	/output the value
 		load	Index	/load value of Index
 		Add	ONE	     /Add one to look at next part of database
 		store	Index	/store in Index 
-		load	IndexIncrement	
-		Add	 ONE
-		store	IndexIncrement
+		load	IndexIncrement	/load IndexIncrement
+		Add	 ONE	/Add One to the variable
+		store	IndexIncrement	/store into IndexIncrement
 		jump	while3	/jump to the 3rd while loop label
-SwapSubProgram,	loadi	IndexComparing
+SwapSubProgram,	loadi	IndexComparing	/load the value at the address of IndexComparing
 	store	temp	/int temp = a;	
-	loadi	IndexLooking
+	loadi	IndexLooking	/load the value at the address of IndexLooking
 	storei	IndexComparing	/a = b;
-	load	temp
+	load	temp	/load the variable of temp
 	storei	IndexLooking	/b = temp;
-ifcomparing,	load	IndexComparing
-		    subt	EAddr	/Check to make sure that we aren't outside the database range
+ifcomparing,	load	EAddr	/load ending address
+		    store	tempEnd    /store into tempEnd
+		    load	IndexLooking  /load variable IndexLooking into accumulator
+		    subt	tempEnd	/Check to make sure that we aren't outside the database range
 		    skipcond	400	/If the value of the accumulator is less than 0 then skip while3 label
-			jump	while2
-			jump	IncrementOutLoop
-endif,	halt
+			jump	while2	/jump to 2nd while loop
+			jump	IncrementOutLoop	/jump to IncrementOutLoop
+endif,	halt	/stop the program
 ONE,	Dec	1	/ int ONE = 1;
 ZERO,	DEC	0	/int ZERO = 0;
 OutLoop,	Dec	0	/ int OutLoop = ZERO;
